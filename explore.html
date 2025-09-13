@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uninest - Explore Hostels</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-50 to-blue-100 min-h-screen">
+
+   <!-- Navbar -->
+  <header class="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+    <h1 class="text-3xl font-extrabold text-blue-700">🏠 Uninest</h1>
+    <nav class="space-x-6 text-gray-700 font-semibold">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="mess.html">Mess</a>
+      <a href="About.html">About</a>
+      <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700">
+        Login
+      </a>
+    </nav>
+  </header>
+
+  <!-- Explore Header -->
+  <section class="text-center py-10">
+    <h2 class="text-4xl font-bold text-gray-800">🔍 Explore Hostels</h2>
+    <p class="text-gray-600 mt-2">Browse hostels by city, budget, or type (Boys/Girls).</p>
+
+    <!-- Filters -->
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+      <select class="px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-400">
+        <option>All Cities</option>
+        <option>Lucknow</option>
+        <option>Delhi</option>
+        <option>Mumbai</option>
+        <option>Pune</option>
+      </select>
+      <select class="px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-400">
+        <option>All Types</option>
+        <option>Boys Hostel</option>
+        <option>Girls Hostel</option>
+        <option>Co-ed</option>
+      </select>
+      <select class="px-4 py-2 rounded-lg border focus:ring-2 focus:ring-blue-400">
+        <option>Sort By</option>
+        <option>Lowest Price</option>
+        <option>Highest Price</option>
+        <option>Most Popular</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Hostel Grid -->
+  <section class="px-8 pb-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Hostel Card -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+      <img src="https://images.unsplash.com/photo-1615874959474-d609a1abed3c?auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-bold text-gray-800">BlueMoon Boys Hostel</h3>
+        <p class="text-gray-600">₹4000/month • 5 beds left</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Boys</span>
+          <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Mess Included</span>
+        </div>
+        <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Hostel Card -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-bold text-gray-800">GreenLeaf Girls PG</h3>
+        <p class="text-gray-600">₹5000/month • 3 beds left</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded-full">Girls</span>
+          <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Mess Compulsory</span>
+        </div>
+        <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Hostel Card -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+      <img src="https://images.unsplash.com/photo-1596386471052-8c9a34d1e4c8?auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-bold text-gray-800">City Comfort PG</h3>
+        <p class="text-gray-600">₹4500/month • Near XYZ College</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Boys</span>
+          <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">Optional Mess</span>
+        </div>
+        <button class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+          View Details
+        </button>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

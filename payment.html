@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uninest - Booking Confirmation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 min-h-screen">
+
+  <!-- Navbar -->
+  <header class="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+    <h1 class="text-3xl font-extrabold text-blue-700">🏠 Uninest</h1>
+    <nav class="space-x-6 text-gray-700 font-semibold">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="mess.html">Mess</a>
+      <a href="About.html">About</a>
+      <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700">
+        Login
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-14 bg-blue-100">
+    <h2 class="text-4xl font-bold text-gray-800">Booking Confirmation</h2>
+    <p class="text-gray-600 mt-2 max-w-xl mx-auto">Confirm your hostel or mess booking securely and proceed with payment.</p>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="px-8 py-12 max-w-2xl mx-auto bg-white rounded-xl shadow-md mt-8">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">Booking Details</h3>
+    
+    <form class="space-y-5">
+      
+      <!-- Student Info -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Full Name</label>
+        <input type="text" placeholder="Enter your name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Email</label>
+        <input type="email" placeholder="Enter your email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Phone Number</label>
+        <input type="tel" placeholder="Enter your phone number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+      </div>
+
+      <!-- Hostel / Mess Info -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Selected Hostel / Mess</label>
+        <input type="text" value="BlueMoon Boys Hostel" disabled class="w-full px-4 py-2 border rounded-lg bg-gray-100">
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Room Type</label>
+        <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+          <option value="single">Single Bed</option>
+          <option value="double">Double Bed</option>
+          <option value="triple">Triple Bed</option>
+        </select>
+      </div>
+
+      <!-- Payment Info -->
+      <div>
+        <label class="block text-gray-700 font-semibold mb-1">Payment Method</label>
+        <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+          <option value="upi">UPI / QR Code</option>
+          <option value="card">Credit / Debit Card</option>
+          <option value="netbanking">Net Banking</option>
+        </select>
+      </div>
+
+      <div class="mt-6">
+        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700">
+          Confirm & Pay ₹4000
+        </button>
+      </div>
+
+    </form>
+  </section>
+
+  <footer class="bg-white text-center py-6 shadow-inner mt-10">
+    &copy; 2025 Uninest | Designed by Nasir Hussain & Shenawaz Bilal
+  </footer>
+
+</body>
+</html>
