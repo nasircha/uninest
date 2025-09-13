@@ -1,529 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js" type="module"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js" type="module"></script>
-<script type="module" src="firebaseauth.js"></script>
-
-  <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#1e40af" />
-<link rel="apple-touch-icon" href="icons/icon-192.png" />
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chand Glass</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <script type="module" src="firebaseauth.js"></script>
-  <style>
-    body {
-      background: linear-gradient(-45deg, #0f172a, #1e3a8a, #0c4a6e, #1e40af);
-      background-size: 400% 400%;
-      animation: gradientMove 15s ease infinite;
-    }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50% }
-      50% { background-position: 100% 50% }
-      100% { background-position: 0% 50% }
-    }
-    .glass {
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    .offer-banner {
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1) }
-      50% { transform: scale(1.05) }
-      100% { transform: scale(1) }
-    }
-  #settingsPanel {
-    position: fixed;
-    top: 0;
-    right: -320px;
-    width: 300px;
-    max-width: 80%;
-    height: 100vh;
-    background: linear-gradient(135deg, #0f172a, #1e3a8a);
-    color: #f3f4f6;
-    transition: right 0.35s ease;
-    z-index: 100;
-    padding: 1.5rem;
-    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.6);
-    border-left: 2px solid rgba(255, 255, 255, 0.1);
-  }
-
-  #settingsPanel.active {
-    right: 0;
-  }
-
-  #settingsPanel h2 {
-    color: #facc15; /* yellow heading */
-  }
-
-  #settingsPanel select,
-  #settingsPanel input[type="checkbox"] {
-    background-color: #1f2937;
-    border: none;
-    padding: 0.5rem;
-    color: #fff;
-    border-radius: 5px;
-    width: 100%;
-  }
-
-  #settingsPanel label {
-    font-weight: 500;
-    margin-top: 1rem;
-    display: block;
-  }
-
-  #settingsPanel button {
-    background-color: #2563eb;
-    color: white;
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    transition: transform 0.2s ease, background 0.3s ease;
-    margin-top: 1.5rem;
-  }
-
-  #settingsPanel button:hover {
-    transform: scale(1.05);
-    background-color: #1d4ed8;
-    box-shadow: 0 0 8px #3b82f6;
-  }
-
-  #closeSettings {
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uninest - Find Hostel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="text-white font-sans">
+<body class="bg-gradient-to-b from-blue-50 to-blue-100 min-h-screen">
 
   <!-- Navbar -->
-  <header class="bg-gray-800 shadow-xl sticky top-0 z-50">
-    <div class="flex items-center justify-between p-4">
-      <h1 class="text-2xl font-bold text-blue-400">Chand Glass</h1>
-      <button id="navToggle" class="md:hidden focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
-    <nav id="navMenu" class="hidden md:flex md:justify-center md:space-x-8 text-lg pb-4 md:pb-0">
-      <a href="#" class="hover:text-blue-400">Home</a>
-      <a href="#about" class="hover:text-blue-400">About</a>
-      <a href="#products" class="hover:text-blue-400">Products</a>
-      <a href="#offers" class="hover:text-blue-400">Offers</a>
-      <a href="#contact" class="hover:text-blue-400">Contact</a>
-      <button id="openSettings" class="hover:text-blue-400">Settings</button>
+  <header class="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+    <h1 class="text-3xl font-extrabold text-blue-700">🏠 Uninest</h1>
+    <nav class="space-x-6 text-gray-700 font-semibold">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="mess.html">Mess</a>
+      <a href="About.html">About</a>
+      <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700">
+        Login
+      </a>
     </nav>
   </header>
-<!-- Floating Cart Button -->
-<button id="openCart" class="fixed bottom-24 right-6 bg-yellow-400 text-black p-3 rounded-full shadow-lg hover:scale-110 transition z-50">
-  🛒
-</button>
 
-<!-- Cart Modal -->
-<div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
-  <div class="bg-white w-80 max-w-full p-6 rounded-xl text-black">
-    <div class="flex justify-between items-center mb-4">
-      <h2 class="text-lg font-bold">Your Cart</h2>
-      <button id="closeCart" class="text-xl font-bold">&times;</button>
-    </div>
-    <ul id="cartItems" class="space-y-2 max-h-60 overflow-y-auto"></ul>
-  </div>
-</div>
-
-
-  <!-- Hero -->
-  <section class="text-center mt-10 px-4">
-    <h2 class="text-3xl sm:text-4xl font-extrabold">Welcome to Chand Glass</h2>
-    <p class="text-gray-300 mt-3">Your one-stop store for Paints, Glass & Plywood</p>
-   <!-- Search Bar with Suggestions -->
-<div class="mt-6 flex justify-center relative z-20">
-  <div class="relative w-full max-w-md">
-    <input id="searchInput" type="text" placeholder="Search products..." 
-           class="w-full pl-12 pr-4 py-3 rounded-full bg-white text-black focus:ring-2 focus:ring-yellow-400 shadow-md" 
-           oninput="showSuggestions(this.value)" />
-    <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
-      </svg>
-    </div>
-    <!-- Suggestions Dropdown -->
-    <ul id="suggestionsList" class="absolute mt-2 w-full bg-white text-black rounded shadow-lg z-30 hidden max-h-64 overflow-y-auto"></ul>
-  </div>
-</div>
-
-</div>
-<!-- Advertisement Section -->
-<section class="mt-10 px-4">
-  <h3 class="text-2xl font-semibold mb-4 text-center">Latest Offers & Ads</h3>
-  <div class="relative overflow-hidden rounded-xl shadow-lg max-w-4xl mx-auto">
-    <div id="adSlider" class="flex transition-transform duration-700 ease-in-out w-full">
-      <!-- Slide 1 -->
-      <a href="offers.html" class="flex-shrink-0 w-full">
-        <img src="https://c8.alamy.com/comp/2G50WA6/professional-painters-painting-a-wall-and-promotional-offer-text-2G50WA6.jpg" alt="Ad 1" class="w-full h-48 object-cover rounded-xl" />
-      </a>
-      <!-- Slide 2 -->
-      <a href="paint.html" class="flex-shrink-0 w-full">
-        <img src="https://cdn.bmstores.co.uk/images/hpcSliderImage/imgSource/2019-10-17-spot-the-difference-paint.cat1.jpg" alt="Ad 2" class="w-full h-48 object-cover rounded-xl" />
-      </a>
-      <!-- Slide 3 -->
-      <a href="glass.html" class="flex-shrink-0 w-full">
-        <img src="https://www.residencestyle.com/wp-content/uploads/2023/12/Offer-Examples.webp" alt="Ad 3" class="w-full h-48 object-cover rounded-xl" />
-      </a>
-    </div>
-  </div>
-</section>
-
-  </section>
-
-  <!-- Offer Banner -->
-  <section id="offers" class="mt-12 px-4 text-center">
-    <a href="offers.html"><div class="bg-yellow-400 text-black font-semibold py-3 px-4 rounded-xl mx-auto max-w-lg offer-banner shadow-lg">
-      🎉 Ultra-Shine Paint Series – Coming Soon! Pre-book &amp; get 10% OFF 🎨
-    </div>
-  </a>
-    
-  </section>
-
-  <!-- Featured Products -->
-  <section id="products" class="mt-16 px-4">
-    <h3 class="text-3xl font-semibold mb-6 text-center">Featured Products</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <div class="p-5 rounded-xl glass shadow-lg text-center">
-        <a href="paint.html">
-          <img src="https://up.yimg.com/ib/th?id=OIP.IOEsAg4TCv0NuWpyCam1fwHaEJ&pid=Api" class="rounded-md mb-4 w-full h-40 object-cover" />
-          <h4 class="text-xl font-bold">Premium Paint</h4>
-          <p class="text-gray-300 text-sm mt-1">Smooth finish, long-lasting colour</p>
-        </a>
-      </div>
-      <div class="p-5 rounded-xl glass shadow-lg text-center">
-        <a href="glass.html">
-          <img src="https://up.yimg.com/ib/th?id=OIP.-sLpAbuWD1DHVLPr8jflPAHaFj&pid=Api" class="rounded-md mb-4 w-full h-40 object-cover" />
-          <h4 class="text-xl font-bold">Tempered Glass</h4>
-          <p class="text-gray-300 text-sm mt-1">Strength & clarity guaranteed</p>
-        </a>
-      </div>
-         <div class="p-5 rounded-xl glass shadow-lg text-center">
-        <a href="glass.html">
-          <img src="https://tse1.mm.bing.net/th/id/OIP.pBJ5jNpixis6LI95ubYFjwHaHa?pid=Api&P=0&h=180" class="rounded-md mb-4 w-full h-40 object-cover" />
-          <h4 class="text-xl font-bold">Tempered Glass</h4>
-          <p class="text-gray-300 text-sm mt-1">Strength & clarity guaranteed</p>
-        </a>
-      </div>
-      <div class="p-5 rounded-xl glass shadow-lg text-center">
-        <a href="ply.html">
-          <img src="https://up.yimg.com/ib/th?id=OIP.YR8ZfZHVLKePnQv5hXgbFAHaEo&pid=Api" class="rounded-md mb-4 w-full h-40 object-cover" />
-          <h4 class="text-xl font-bold">Waterproof Plywood</h4>
-          <p class="text-gray-300 text-sm mt-1">Durable for all conditions</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Compact Catalog -->
-   
-  <section class="mt-20 px-4" id="catalog">
-    <h3 class="text-2xl font-semibold mb-6 text-center text-yellow-300">All Products</h3>
-<div class="flex justify-center gap-4 mb-6 flex-wrap">
-  <a href="#catalog" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">All</a>
-  <a href="#paint" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Paint</a>
-  <a href="#plywood" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Plywood</a>
-  <a href="#glass" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Glass</a>
-  <a href="#fevicol" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">Fevicol</a>
-</div>
-
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-
-      <!-- Paint -->
-      <div class="bg-gray-800 p-3 rounded-lg shadow-md text-center">
-        <img src="https://tse2.mm.bing.net/th/id/OIP.1uDOjXBu8mVUByjaqu2KNQHaGQ?pid=Api&P=0&h=184">
-        <h4 class="font-semibold text-sm">Asian Apex Ultima</h4>
-        <p class="text-blue-400 text-sm">₹1,799</p>
-        <button class="mt-2 text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded">Add</button>
-      </div>
-
-      <!-- Plywood -->
-      <div class="bg-gray-800 p-3 rounded-lg shadow-md text-center">
-        <img src="https://tse2.mm.bing.net/th/id/OIP.S_mS6FcYMonXCgmFOeWqaAHaHa?pid=Api&P=0&h=180" class="w-full h-28 object-cover rounded mb-2">
-        <h4 class="font-semibold text-sm">Marine Grade Ply</h4>
-        <p class="text-blue-400 text-sm">₹2,399</p>
-        <button class="mt-2 text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded">Add</button>
-      </div>
-
-      <!-- Glass -->
-      <div class="bg-gray-800 p-3 rounded-lg shadow-md text-center">
-        <img src="https://tse4.mm.bing.net/th/id/OIP.9T9GtXPGqpuXf_4c9Iw0_QHaFS?pid=Api&P=0&h=180" class="w-full h-28 object-cover rounded mb-2">
-        <h4 class="font-semibold text-sm">6mm Tempered Glass</h4>
-        <p class="text-blue-400 text-sm">₹899</p>
-        <button class="mt-2 text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded">Add</button>
-      </div>
-
-      <!-- Wood Polish -->
-      <div class="bg-gray-800 p-3 rounded-lg shadow-md text-center">
-        <img src="https://5.imimg.com/data5/SELLER/Default/2021/6/QM/JW/CU/27753567/touchwood-glossy-500x500.jpg" class="w-full h-28 object-cover rounded mb-2">
-        <h4 class="font-semibold text-sm">Asian Wood Polish</h4>
-        <p class="text-blue-400 text-sm">₹499</p>
-        <button class="mt-2 text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded">Add</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Fevicol Products Section -->
-   
-<section class="mt-20 px-4" id="fevicol">
-  <h3 class="text-2xl font-semibold mb-6 text-center text-yellow-300">Fevicol Products</h3>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-
-    <!-- Fevicol MR White Glue -->
-    <div class="bg-gray-800 p-3 rounded-lg shadow-md text-center">
-      <img src="https://tse2.mm.bing.net/th/id/OIP.FozGuZ5Qv3F8OSBT362SbQAAAA?pid=Api&P=0&h=180" class="w-full h-28 object-cover rounded mb-2">
-      <h4 class="font-semibold text-sm">Fevicol MR White Glue 1kg</h4>
-      <p class="text-blue-400 text-sm">₹230</p>
-      <button class="mt-2 text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded">Add</button>
-    </div>
-
-    <!-- Fevicol SH Resin -->
-    <div class="bg-gray-800 p-3 rounded-lg shadow-md text-center">
-      <img src="https://tse2.mm.bing.net/th/id/OIP.1uDOjXBu8mVUByjaqu2KNQHaGQ?pid=Api&P=0&h=180" class="w-full h-28 object-cover rounded mb-2">
-      <h4 class="font-semibold text-sm">Fevicol SH Resin 5kg</h4>
-      <p class="text-blue-400 text-sm">₹540</p>
-      <button class="mt-2 text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded">Add</button>
-    </div>
-
-    <!-- Fevicol Probond -->
-    <div class="bg-gray-800 p-3 rounded-lg shadow-md text-center">
-      <img src="https://tse2.mm.bing.net/th/id/OIP.1t4H3evSn-gwSV4fiemKEwHaJ0?pid=Api&P=0&h=180" class="w-full h-28 object-cover rounded mb-2">
-      <h4 class="font-semibold text-sm">Fevicol Probond 500ml</h4>
-      <p class="text-blue-400 text-sm">₹110</p>
-      <button class="mt-2 text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded">Add</button>
-    </div>
-
-    <!-- Fevicol HeatX -->
-    <div class="bg-gray-800 p-3 rounded-lg shadow-md text-center">
-      <img src="https://tse2.mm.bing.net/th/id/OIP.GzsPbySq8AsqSsyT7-c40gHaHa?pid=Api&P=0&h=180" class="w-full h-28 object-cover rounded mb-2">
-      <h4 class="font-semibold text-sm">Fevicol HeatX Adhesive</h4>
-      <p class="text-blue-400 text-sm">₹180</p>
-      <button class="mt-2 text-xs px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded">Add</button>
-    </div>
-
-  </div>
-</section>
-
-
-  <!-- About -->
-  <section id="about" class="mt-20 px-4 text-center">
-    <h3 class="text-3xl font-semibold mb-4">About Us</h3>
-    <p class="text-gray-300 max-w-3xl mx-auto">
-      Chand Glass is a trusted business in Buxar, Bihar, offering high-quality paints,
-      durable glass and reliable plywood with a customer-first approach.
+  <!-- Hero Section -->
+  <section class="text-center py-14">
+    <h2 class="text-5xl font-bold text-gray-800 leading-tight">
+      Find Your <span class="text-blue-600">Perfect Hostel</span> in Seconds
+    </h2>
+    <p class="text-gray-600 text-lg mt-3">
+      Verified Hostels • Boys & Girls • Mess Info • Live Availability
     </p>
+
+    <!-- Search Bar -->
+    <div class="mt-8 flex justify-center">
+      <input type="text" placeholder="Search by city or college..." 
+             class="w-1/2 px-5 py-3 rounded-l-full shadow-md focus:outline-none">
+      <button class="bg-blue-600 px-6 rounded-r-full text-white font-bold hover:bg-blue-700">
+        Search
+      </button>
+    </div>
   </section>
- <!-- Testimonials Auto Slider -->
-  <section class="mt-20 px-4 sm:px-10">
-    <h3 class="text-3xl font-semibold mb-6 text-center">What Our Customers Say</h3>
-    <div class="relative overflow-hidden w-full max-w-4xl mx-auto">
-      <div id="testimonialSlider" class="flex transition-transform duration-700 ease-in-out w-full">
-        <div class="w-full flex-shrink-0 bg-gray-800 p-6 rounded-xl shadow-md text-center">
-          <p class="text-blue-300 text-lg mb-2">"Excellent quality and service!"</p>
-          <p class="font-semibold">– Saddam Hussain</p>
-        </div>
-        <div class="w-full flex-shrink-0 bg-gray-800 p-6 rounded-xl shadow-md text-center">
-          <p class="text-blue-300 text-lg mb-2">"Glass was crystal clear and delivered fast."</p>
-          <p class="font-semibold">– Ehtesham Hussain</p>
-        </div>
-        <div class="w-full flex-shrink-0 bg-gray-800 p-6 rounded-xl shadow-md text-center">
-          <p class="text-blue-300 text-lg mb-2">"Paint lasted 3 years without fading!"</p>
-          <p class="font-semibold">– Mussarat Ikbal</p>
-        </div>
-        <div class="w-full flex-shrink-0 bg-gray-800 p-6 rounded-xl shadow-md text-center">
-          <p class="text-blue-300 text-lg mb-2">"Plywood was strong and waterproof!"</p>
-          <p class="font-semibold">– Nasir Hussain</p>
-        </div>
-        <div class="w-full flex-shrink-0 bg-gray-800 p-6 rounded-xl shadow-md text-center">
-          <p class="text-blue-300 text-lg mb-2">"چاند گلاس بہت اچھا اسٹور ہے۔ سب کچھ وقت پر اور اچھے ریٹ پر ملا۔"</p>
-          <p class="font-semibold">– روہما</p>
-        </div>
+
+  <!-- Popular Cities Section -->
+  <section class="px-8 py-10 text-center">
+    <h3 class="text-3xl font-bold text-gray-800 mb-6">📍 Popular Cities</h3>
+    <div class="flex flex-wrap justify-center gap-4">
+      <span class="bg-white shadow px-5 py-3 rounded-full text-gray-700 font-semibold hover:bg-blue-100 cursor-pointer">Lucknow</span>
+      <span class="bg-white shadow px-5 py-3 rounded-full text-gray-700 font-semibold hover:bg-blue-100 cursor-pointer">Delhi</span>
+      <span class="bg-white shadow px-5 py-3 rounded-full text-gray-700 font-semibold hover:bg-blue-100 cursor-pointer">Pune</span>
+      <span class="bg-white shadow px-5 py-3 rounded-full text-gray-700 font-semibold hover:bg-blue-100 cursor-pointer">Mumbai</span>
+      <span class="bg-white shadow px-5 py-3 rounded-full text-gray-700 font-semibold hover:bg-blue-100 cursor-pointer">Bengaluru</span>
+      <span class="bg-white shadow px-5 py-3 rounded-full text-gray-700 font-semibold hover:bg-blue-100 cursor-pointer">Hyderabad</span>
+    </div>
+  </section>
+
+  <!-- Hostel Grid -->
+  <section class="px-8 py-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Hostel Card -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+      <img src="https://images.unsplash.com/photo-1615874959474-d609a1abed3c?auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-bold text-gray-800">BlueMoon Boys Hostel</h3>
+        <p class="text-gray-600">₹4000/month • 5 beds left</p>
+        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Boys</span>
+        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Mess Included</span>
+      </div>
+    </div>
+
+    <!-- Hostel Card -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-bold text-gray-800">GreenLeaf Girls PG</h3>
+        <p class="text-gray-600">₹5000/month • 3 beds left</p>
+        <span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded-full">Girls</span>
+        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Mess Compulsory</span>
+      </div>
+    </div>
+
+    <!-- Hostel Card -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+      <img src="https://images.unsplash.com/photo-1596386471052-8c9a34d1e4c8?auto=format&fit=crop&w=800&q=80" class="h-48 w-full object-cover">
+      <div class="p-5">
+        <h3 class="text-xl font-bold text-gray-800">City Comfort PG</h3>
+        <p class="text-gray-600">₹4500/month • Near XYZ College</p>
+        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Boys</span>
+        <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">Optional Mess</span>
       </div>
     </div>
   </section>
-  <!-- Contact -->
-  <section id="contact" class="mt-20 px-4 text-center">
-    <h3 class="text-3xl font-semibold mb-6">Get In Touch</h3>
-    <p class="text-gray-300 mb-4">Call <strong>+91 9798753191</strong> or email <strong>mdnasirhussain121@gmail.com</strong></p>
-   <form action="https://formsubmit.co/mdnasirhussain121@gmail.com" method="POST" class="max-w-lg mx-auto bg-gray-800 p-6 rounded-xl space-y-4">
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://nasircha.github.io/chand-glass/thankyou.html">
 
-  <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded text-black" required />
-  <input type="email" name="email" placeholder="Your Email" class="w-full p-3 rounded text-black" required />
-  <textarea name="message" rows="4" placeholder="Your Message" class="w-full p-3 rounded text-black" required></textarea>
-  <button class="bg-blue-500 px-6 py-3 rounded hover:bg-blue-600 transition w-full sm:w-auto">Send Message</button>
-</form>
-
-
+  <!-- Stats Section -->
+  <section class="bg-white py-12 text-center shadow-inner">
+    <h3 class="text-3xl font-bold text-gray-800 mb-6">📊 Our Impact</h3>
+    <div class="flex flex-wrap justify-center gap-10">
+      <div>
+        <h4 class="text-4xl font-extrabold text-blue-600">500+</h4>
+        <p class="text-gray-600">Verified Hostels</p>
+      </div>
+      <div>
+        <h4 class="text-4xl font-extrabold text-blue-600">2000+</h4>
+        <p class="text-gray-600">Happy Students</p>
+      </div>
+      <div>
+        <h4 class="text-4xl font-extrabold text-blue-600">15+</h4>
+        <p class="text-gray-600">Cities Covered</p>
+      </div>
+    </div>
   </section>
 
-  <!-- WhatsApp Shortcut -->
-  <a href="https://wa.me/919798753191" target="_blank" class="fixed bottom-6 right-6 bg-green-500 p-4 rounded-full shadow-xl hover:scale-110 transition">
-    <img src="https://img.icons8.com/ios-filled/28/ffffff/whatsapp.png">
-  </a>
-
-  <!-- Settings Panel -->
-  <aside id="settingsPanel" class="p-6">
-    <div class="flex justify-between items-center mb-5">
-      <h2 class="text-xl font-semibold">Settings</h2>
-      <button id="closeSettings" class="text-2xl">&times;</button>
+  <!-- Student Feedback Section -->
+  <section class="px-8 py-12 text-center">
+    <h3 class="text-3xl font-bold text-gray-800 mb-8">💬 What Students Say</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl shadow-md p-5">
+        <p class="text-gray-700">"Uninest helped me find a safe girls hostel near my college in just 10 minutes. Loved it!"</p>
+        <h4 class="text-blue-600 font-semibold mt-3">- Rohma, Lucknow</h4>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-5">
+        <p class="text-gray-700">"Super easy to use and I could see which rooms were available live. No more calling 10 hostels!"</p>
+        <h4 class="text-blue-600 font-semibold mt-3">- Nasir, Lucknow</h4>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-5">
+        <p class="text-gray-700">"Mess details were clear and price was transparent. No hidden charges. Great work!"</p>
+        <h4 class="text-blue-600 font-semibold mt-3">- Sidra, Lucknow</h4>
+      </div>
     </div>
-    <label class="block mb-2 font-medium">Language</label>
-    <select class="w-full p-2 rounded text-black mb-5">
-      <option>English</option>
-      <option>Hindi</option>
-      <option>Urdu</option>
-    </select>
-    <label class="flex items-center space-x-2 mb-5">
-      <input type="checkbox" class="form-checkbox"><span>Enable Dark Mode (coming)</span>
-    </label>
-    <button class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded">Save</button>
+  </section>
 
-    <!-- Admin Panel -->
-   <!-- Register link -->
-<div class="mt-6 text-center">
-  <p class="text-sm text-gray-300 mb-2">New here?</p>
-  <a href="register.html" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 font-semibold inline-block">
-    Create Account
+  <!-- Floating Button -->
+  <a href="#" class="fixed bottom-6 right-6 bg-blue-600 text-white px-5 py-3 rounded-full shadow-lg hover:bg-blue-700">
+    ➕ List Your Hostel
   </a>
-</div>
-
-  </aside>
-
-  <footer class="mt-20 p-6 text-center text-gray-400 bg-gray-800">
-    © 2025 Chand Glass | Built by Nasir Hussain
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    document.getElementById('navToggle').onclick = () => {
-      document.getElementById('navMenu').classList.toggle('hidden');
-    };
-    document.getElementById('openSettings').onclick = () => {
-      document.getElementById('settingsPanel').classList.add('active');
-    };
-    document.getElementById('closeSettings').onclick = () => {
-      document.getElementById('settingsPanel').classList.remove('active');
-    };
-    document.getElementById('adminToggle').onclick = () => {
-      document.getElementById('adminPanel').classList.toggle('hidden');
-    };
-  </script>
-  <script>
-  const slider = document.getElementById('testimonialSlider');
-  let index = 0;
-  setInterval(() => {
-    index = (index + 1) % 5; // total 5 testimonials
-    slider.style.transform = `translateX(-${index * 100}%)`;
-  }, 4000); // slides every 4 seconds
-</script>
-<script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("service-worker.js")
-        .then(reg => console.log("Service worker registered"))
-        .catch(err => console.log("Service worker failed", err));
-    });
-  }
-</script>
-<script>
-  const products = [
-    'Asian Apex Ultima',
-    'Asian Tractor Emulsion',
-    'Berger Easy Clean',
-    'Tempered Glass 6mm',
-    'Tempered Glass 8mm',
-    'Marine Grade Plywood',
-    'Fevicol SH',
-    'Fevicol MR White',
-    'Fevicol HeatX',
-    'Wood Polish Touchwood',
-    'Plastic Primer Paint',
-    'Interior Enamel Paint'
-  ];
-
-  const suggestionsList = document.getElementById('suggestionsList');
-  const searchInput = document.getElementById('searchInput');
-
-  function showSuggestions(value) {
-    const input = value.trim().toLowerCase();
-    suggestionsList.innerHTML = '';
-
-    if (input === '') {
-      suggestionsList.classList.add('hidden');
-      filterProducts(''); // show all
-      return;
-    }
-
-    const matches = products.filter(product =>
-      product.toLowerCase().includes(input)
-    );
-
-    if (matches.length === 0) {
-      suggestionsList.classList.add('hidden');
-      filterProducts(input); // still filter even if no suggestion
-      return;
-    }
-
-    matches.forEach(item => {
-      const li = document.createElement('li');
-      li.className = 'px-4 py-2 hover:bg-yellow-100 cursor-pointer';
-      li.textContent = item;
-      li.onclick = () => {
-        searchInput.value = item;
-        suggestionsList.classList.add('hidden');
-        filterProducts(item);
-      };
-      suggestionsList.appendChild(li);
-    });
-
-    suggestionsList.classList.remove('hidden');
-    filterProducts(input);
-  }
-
-  function filterProducts(keyword) {
-    keyword = keyword.toLowerCase();
-    const cards = document.querySelectorAll('[data-name]');
-
-    cards.forEach(card => {
-      const name = card.getAttribute('data-name').toLowerCase();
-      card.style.display = name.includes(keyword) ? 'block' : 'none';
-    });
-  }
-
-  document.addEventListener('click', function (e) {
-    if (!searchInput.contains(e.target) && !suggestionsList.contains(e.target)) {
-      suggestionsList.classList.add('hidden');
-    }
-  });
-</script>
-<script>
-  const adSlider = document.getElementById('adSlider');
-  let adIndex = 0;
-  const totalAds = 3; // Number of slides
-
-  setInterval(() => {
-    adIndex = (adIndex + 1) % totalAds;
-    adSlider.style.transform = `translateX(-${adIndex * 100}%)`;
-  }, 3000); // change every 3 seconds
-</script>
-<script src="cart.js" defer></script>
 
 </body>
 </html>
