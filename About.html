@@ -6,61 +6,121 @@
   <title>About Uninest</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-blue-50 min-h-screen">
+<body class="bg-blue-50 font-sans">
 
   <!-- Navbar -->
-  <header class="flex justify-between items-center px-8 py-4 bg-white shadow-md">
-    <h1 class="text-3xl font-extrabold text-blue-700">🏠 Uninest</h1>
-    <nav class="space-x-6 text-gray-700 font-semibold">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="mess.html">Mess</a>
-      <a href="About.html">About</a>
-      <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700">
-        Login
-      </a>
+  <header class="flex justify-between items-center px-8 py-4 bg-white shadow-md sticky top-0 z-50">
+    <a href="index.html">
+      <h1 class="text-3xl font-extrabold text-blue-700">🏠 Uninest</h1>
+    </a>
+    <nav class="space-x-6 text-blue-700 font-semibold">
+      <a href="index.html" class="hover:text-blue-500">Home</a>
+      <a href="explore.html" class="hover:text-blue-500">Explore</a>
+      <a href="mess.html" class="hover:text-blue-500">Mess</a>
+      <a href="about.html" class="hover:text-blue-500">About</a>
+      <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700">Login</a>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section class="text-center py-14 bg-blue-100">
-    <h2 class="text-4xl font-bold text-gray-800">About Uninest</h2>
-    <p class="text-gray-600 mt-2 max-w-xl mx-auto">Our mission is to make finding safe and affordable hostels easy for students.</p>
-  </section>
-
-  <!-- About Content -->
-  <section class="px-8 py-12 max-w-4xl mx-auto bg-white rounded-xl shadow-md mt-8">
-    <h3 class="text-3xl font-bold text-gray-800 mb-4">Why Uninest?</h3>
-    <p class="text-gray-700 mb-4">
-      Finding a suitable hostel can be stressful and time-consuming for college and university students. Uninest solves this problem by providing a platform where students can:
-    </p>
-    <ul class="list-disc list-inside text-gray-700 mb-4">
-      <li>Search for verified hostels and PGs in their city or near their college.</li>
-      <li>View live availability of rooms to avoid unnecessary phone calls.</li>
-      <li>Check hostel facilities including mess options, gender-specific hostels, and safety measures.</li>
-      <li>Submit proof (like Aadhar or PAN) for secure booking when confirming a hostel.</li>
-      <li>See ratings and feedback from other students to make an informed decision.</li>
-      <li>Optionally choose independent mess services even if they are not staying in a hostel.</li>
-    </ul>
-    <p class="text-gray-700 mb-4">
-      Our platform ensures students have a safe, transparent, and hassle-free experience finding accommodation and food options during their studies.
-    </p>
-
-    <h3 class="text-2xl font-bold text-gray-800 mb-2 mt-6">About the Creators / Team</h3>
-    <p class="text-gray-700 mb-2">
-      This platform is created by:
-    </p>
-    <ul class="list-disc list-inside text-gray-700 mb-4">
-      <li><span class="font-semibold">Nasir Hussain</span> - B.Tech CSE (Cloud Computing & AI) student, main developer and idea creator.</li>
-      <li><span class="font-semibold">Shehnawaz and Bilal</span> - Classmate and teammate, assisted in development and testing.</li>
-    </ul>
-    <p class="text-gray-700">
-      Together, we aim to help students save time and find safe hostels & mess facilities easily.
+  <!-- About Uninest -->
+  <section class="text-center py-16 px-8">
+    <h1 class="text-5xl font-bold text-blue-800 mb-6">About <span class="text-blue-600">Uninest</span></h1>
+    <p class="max-w-3xl mx-auto text-lg text-blue-700">
+      Uninest helps students find safe and reliable hostels quickly and easily. 
+      All listings are verified, with live availability and essential amenities information.
     </p>
   </section>
 
-  <footer class="bg-white text-center py-6 shadow-inner mt-10">
-    &copy; 2025 Uninest | Designed by Nasir Hussain & Shenawaz Bilal
+  <!-- Divider -->
+  <div class="border-t-2 border-blue-200 mx-16"></div>
+
+  <!-- Why Uninest -->
+  <section class="px-8 py-16 text-center">
+    <h2 class="text-4xl font-bold text-blue-800 mb-10">Why Choose <span class="text-blue-600">Uninest</span>?</h2>
+    <div class="max-w-5xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition transform hover:-translate-y-2">
+        <div class="text-blue-600 text-4xl mb-3">✅</div>
+        <h3 class="text-xl font-bold text-blue-700 mb-2">Verified Hostels</h3>
+        <p class="text-blue-600">Every hostel is verified for safety and quality, so you can trust your stay.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition transform hover:-translate-y-2">
+        <div class="text-blue-600 text-4xl mb-3">⏱️</div>
+        <h3 class="text-xl font-bold text-blue-700 mb-2">Live Availability</h3>
+        <p class="text-blue-600">Check room availability in real-time without calling multiple hostels.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition transform hover:-translate-y-2">
+        <div class="text-blue-600 text-4xl mb-3">🏠</div>
+        <h3 class="text-xl font-bold text-blue-700 mb-2">Essential Amenities</h3>
+        <p class="text-blue-600">Get clear info on WiFi, water, mess, study tables, and security features.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="border-t-2 border-blue-200 mx-16"></div>
+
+  <!-- Our Team -->
+  <section class="px-8 py-16 text-center bg-gradient-to-b from-blue-50 to-white">
+    <h2 class="text-4xl font-bold text-blue-800 mb-10">Our Team</h2>
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <div class="bg-white rounded-xl shadow p-6 hover:shadow-2xl transition transform hover:scale-105">
+        <img src="https://github.com/nasircha/uninest/blob/main/WhatsApp%20Image%202025-09-14%20at%2004.25.01_6e761434.jpg?raw=true" 
+             alt="Nasir" class="w-32 h-32 mx-auto mb-4 rounded-lg object-cover border-2 border-blue-300">
+        <h3 class="text-xl font-bold text-blue-800 mb-1">Nasir Hussain</h3>
+        <p class="text-blue-600">Founder & Developer</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 hover:shadow-2xl transition transform hover:scale-105">
+        <img src="https://github.com/nasircha/uninest/blob/main/WhatsApp%20Image%202025-09-14%20at%2004.26.08_168734ff.jpg?raw=true" 
+             alt="Shenawaz Bilal" class="w-32 h-32 mx-auto mb-4 rounded-lg object-cover border-2 border-blue-300">
+        <h3 class="text-xl font-bold text-blue-800 mb-1">Shehnawaz Anis</h3>
+        <p class="text-blue-600">Co-Developer</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow p-6 hover:shadow-2xl transition transform hover:scale-105">
+        <img src="https://firebasestorage.googleapis.com/v0/b/student-senior-9fa03.appspot.com/o/1744216363757WhatsApp%20Image%202025-04-09%20at%2018.25.05_17badea7.jpg?alt=media&token=82e1b386-f2ed-4b6e-bef4-6aa0909b2219" 
+             alt="Mohammed Bilal" class="w-32 h-32 mx-auto mb-4 rounded-lg object-cover border-2 border-blue-300">
+        <h3 class="text-xl font-bold text-blue-800 mb-1">Mohammed Bilal Nadeem</h3>
+        <p class="text-blue-600">UI/UX Designer</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="border-t-2 border-blue-200 mx-16"></div>
+
+  <!-- Our Impact -->
+  <section class="bg-white py-16 text-center">
+    <h2 class="text-4xl font-bold text-blue-800 mb-10">Our Impact</h2>
+    <div class="flex flex-wrap justify-center gap-12">
+      <div>
+        <h3 class="text-5xl font-extrabold text-blue-600">500+</h3>
+        <p class="text-blue-700 mt-2">Verified Hostels</p>
+      </div>
+      <div>
+        <h3 class="text-5xl font-extrabold text-blue-600">2000+</h3>
+        <p class="text-blue-700 mt-2">Happy Students</p>
+      </div>
+      <div>
+        <h3 class="text-5xl font-extrabold text-blue-600">15+</h3>
+        <p class="text-blue-700 mt-2">Cities Covered</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 text-center bg-blue-600 text-white">
+    <h2 class="text-4xl font-bold mb-4">Want to List Your Hostel?</h2>
+    <p class="mb-6">Join Uninest and make your hostel visible to thousands of students.</p>
+    <a href="login.html" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Get Started</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-700 text-white py-8 text-center">
+    <p>© 2025 Uninest. All rights reserved.</p>
+    <p>Contact: info@uninest.com | +91-9999999999</p>
   </footer>
 
 </body>
