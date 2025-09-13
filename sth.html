@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STH Boys Hostel - Uninest</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-blue-50 min-h-screen">
+
+  <!-- Navbar -->
+  <header class="flex justify-between items-center px-8 py-4 bg-white shadow-md">
+    <h1 class="text-3xl font-extrabold text-blue-700">🏠 Uninest</h1>
+    <nav class="space-x-6 text-gray-700 font-semibold">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="mess.html">Mess</a>
+      <a href="about.html">About</a>
+      <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-full shadow hover:bg-blue-700">
+        Login
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hostel Info -->
+  <section class="px-8 py-10">
+    <h2 class="text-4xl font-bold text-gray-800 mb-4">STH Boys Hostel</h2>
+    <p class="text-gray-600 text-lg mb-4">₹3000/month • 10 Beds Available • 2 Students per Room • Mess Not Included</p>
+    <p class="text-gray-700 mb-4">Located just 500m from Integral University, STH Boys Hostel offers safe and comfortable rooms with modern amenities. Main gate closes at 11 PM, CCTV monitored, WiFi available, water machine for drinking water, and study tables in each room.</p>
+    <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full mr-2">Boys</span>
+    <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">No Mess</span>
+  </section>
+
+  <!-- Room Gallery Carousel -->
+  <section class="px-8 py-10">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">🛏️ Room Gallery</h3>
+    <div x-data="{ current: 0, images: ['images/sth_room1.jpg','images/sth_room2.jpg','images/sth_room3.jpg','images/sth_room4.jpg','images/sth_room5.jpg','images/sth_room6.jpg'] }" class="relative w-full max-w-4xl mx-auto">
+      <template x-for="(img, index) in images" :key="index">
+        <img :src="https://github.com/nasircha/uninest/blob/main/WhatsApp%20Image%202025-09-14%20at%2002.53.09_7e010e91.jpg?raw=true" x-show="current === index" class="rounded-lg shadow-md w-full h-64 object-cover transition-all duration-500">
+      </template>
+     
+    </div>
+  </section>
+
+  <!-- Hostel Amenities -->
+  <section class="px-8 py-10 bg-white rounded-xl shadow-md mx-8 mb-10">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">🏢 Amenities</h3>
+    <ul class="list-disc list-inside text-gray-700 space-y-2">
+      <li>Free WiFi</li>
+      <li>Water machine with drinking water</li>
+      <li>CCTV Security</li>
+      <li>Main gate closes at 11 PM</li>
+      <li>Study tables in rooms</li>
+      <li>500m from Integral University</li>
+      <li>2 Students per Room</li>
+    </ul>
+  </section>
+
+  <!-- Owner Info Section -->
+  <section class="px-8 py-10 bg-blue-100 rounded-xl shadow-md mx-8 mb-10">
+    <h3 class="text-2xl font-bold text-gray-800 mb-4">👤 Owner Details</h3>
+    <p class="text-gray-700 mb-2">Name: Mr.Hasim Khan</p>
+    <p class="text-gray-700 mb-2">Contact: <a href="mailto:sthboys.hostel@gmail.com" class="text-blue-600 underline">sthboys.hostel@gmail.com</a></p>
+    <p class="text-gray-700 mb-4">Phone: +91 9876543210</p>
+
+    <!-- Map -->
+    <div class="w-full h-64 rounded-lg overflow-hidden shadow-md">
+      <iframe
+       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.2123610135795!2d80.9999015752261!3d26.96017357661889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399959007f7d05d7%3A0x12b7f1ee4126796c!2sS%20T%20H%20Hostel!5e0!3m2!1sen!2sin!4v1757800080603!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <!-- Book Hostel Button -->
+  <div class="text-center mb-12">
+    <a href="payment.html" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700">
+      ✅ Confirm Booking
+    </a>
+  </div>
+
+</body>
+</html>
